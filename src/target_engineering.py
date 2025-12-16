@@ -24,7 +24,7 @@ def execute_target_engineering(filepath: str):
         print(f"Error loading data: {e}")
         return
 
-    # 2. Instantiate and Fit TargetEngineer
+    # Instantiate and Fit TargetEngineer
     # The TargetEngineer class handles RFM calculation, scaling, K-Means (n_clusters=3), 
     # and identifying the high-risk cluster (highest Recency).
     target_engineer = TargetEngineer(n_clusters=3, random_state=42)
@@ -38,7 +38,7 @@ def execute_target_engineering(filepath: str):
     
     print(f"\nTarget variable created for {target_df.shape[0]} unique customers.")
     
-    # 3. Analyze and Display Results
+    # Analyze and Display Results
     
     # Analyze Cluster Characteristics (Requires accessing internal state for analysis)
     # Note: Accessing internal attributes like .kmeans is done here for reporting, 
@@ -64,7 +64,7 @@ def execute_target_engineering(filepath: str):
     print(f"High Risk (1): {risk_counts.get(1, 0)} customers ({risk_counts.get(1, 0) / target_df.shape[0] * 100:.2f}%)")
     print(f"Low Risk (0): {risk_counts.get(0, 0)} customers ({risk_counts.get(0, 0) / target_df.shape[0] * 100:.2f}%)")
 
-    # 4. Integrate the Target Variable (Demonstration)
+    # Integrate the Target Variable (Demonstration)
     
     # We will also run the feature engineering functions to show the final matrix assembly
     agg_df = AggregateFeatures().transform(raw_data)
