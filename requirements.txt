@@ -1,3 +1,6 @@
 pandas 
 matplotlib
 seaborn 
+xverse
+numpy
+scikit-learn
