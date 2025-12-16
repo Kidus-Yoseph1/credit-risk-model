@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  credit_risk_api:
+    # Build the image from the Dockerfile in the current directory
+    build: .
+    # Map the container port 8000 to the host machine port 8000
+    ports:
+      - "8000:8000"
+    # Restart the container if it fails
+    restart: always
+    # Set the container name for easy reference
+    container_name: credit_risk_api_container
