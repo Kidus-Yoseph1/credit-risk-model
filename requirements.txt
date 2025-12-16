@@ -4,3 +4,9 @@ seaborn
 xverse
 numpy
 scikit-learn
+fastapi
+uvicorn
+pydantic
+flake8
+mlflow 
+pytest
