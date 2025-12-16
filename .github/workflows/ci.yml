@@ -1,0 +1,44 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main  # Trigger on pushes to the main branch
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    
+    # Define a default shell for all steps
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      
+      - name: Install Dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          # Install quality tools
+          pip install flake8 pytest
+      
+      - name: Run Code Linter (Flake8)
+        run: |
+          echo "Running Flake8 on src/ directory..."
+          # The command checks the entire src directory.
+          flake8 src/ --exclude src/api/ --max-line-length=120
+      
+      - name: Run Unit Tests (Pytest)
+        # Note: You need a 'tests/' directory with test files (e.g., test_data_preprocess.py) for this to work.
+        run: |
+          echo "Running Pytest..."
+          # Set PYTHONPATH so tests can import from 'src'
+          PYTHONPATH=. pytest
